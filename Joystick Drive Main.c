@@ -33,7 +33,7 @@ task main()
 
 	initializeRobot();
 
-	while(true)                            // Infinite loop:
+	while(true) // Infinite loop:
 	{
 		getJoystickSettings(joystick);
 
@@ -42,7 +42,7 @@ task main()
 		motor3speed = joystick.joy1_y1;
 		motor4speed = joystick.joy1_y2;
 
-		if(joystick.joy1_y1 || joystick.joy1_y2)
+		if(joystick.joy1_y1 || joystick.joy1_y2) //reducing the motor speed by half
 		{
 			motor[motorD] = motor1speed/2;
 			motor[motorE] = motor2speed/2;
@@ -50,7 +50,7 @@ task main()
 			motor[motorG] = motor4speed/2;
 		}
 
-		else
+		else //brake when there is no joystick value
 		{
 			motor[motorD] = 0;
 			motor[motorE] = 0;
@@ -58,7 +58,22 @@ task main()
 			motor[motorG] = 0;
 		}
 
-		if(joy1Btn(5) == 1)
+		if(joy1Btn(1) == 1) //move the scoop up when button 1 is pressed
+		{
+			servo[servo4] = 255;
+			servo[servo5] = -255;
+			wait1Msec(800);
+		}
+		
+		if(joy1Btn(2) == 1) //move the scoop down when button 2 is pressed
+		{
+			servo[servo4] = -255;
+			servo[servo5] = -255;
+			wait1Msec(800);
+		}
+		}
+
+		if(joy1Btn(5) == 1) 
 		{
 			motor[motorI] = 30;
 			motor[motorH] = 30;
