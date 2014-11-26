@@ -59,19 +59,32 @@ task main()
 
 		if(joy1Btn(1) == 1) //move the scoop up when button 1 is pressed
 		{
-			servo[servo4] = 255;
-			servo[servo5] = -255;
+			servo[servo4] = 225;
+			servo[servo5] = -225;
 			wait1Msec(800);
-		}
-		
-		if(joy1Btn(2) == 1) //move the scoop down when button 2 is pressed
-		{
-			servo[servo4] = -255;
-			servo[servo5] = -255;
-			wait1Msec(800);
+
+			servo[servo6] = 255;
+			wait1Msec(30);
 		}
 
-		if(joy1Btn(5) == 1) 
+		if(joy1Btn(2) == 1) //move the scoop down when button 2 is pressed
+		{
+			servo[servo4] = 127;
+			servo[servo5] = 127;
+			servo[servo6] = 127
+		}
+
+		if(joy1Btn(3) == 1)
+			{
+				servo[servo4] = -255;
+				servo[servp5] = -255;
+				wait1Msec(800);
+
+				servo[servo6] = 0;
+				wait1Msec(30);
+			}
+
+		if(joy1Btn(5) == 1)
 		{
 			motor[motorH] = 30;
 			motor[motorI] = 30;
