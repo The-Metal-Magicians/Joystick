@@ -73,20 +73,20 @@ task main()
 
 		if(joy1Btn(5) == 1) 
 		{
-			motor[motorI] = 30;
 			motor[motorH] = 30;
+			motor[motorI] = 30;
 			wait1Msec(3);
-			motor[motorI] = 0;
 			motor[motorH] = 0;
+			motor[motorI] = 0;
 		}
 
 		if(joy1Btn(6) == 1)
 		{
-			motor[motorI] = -30;
 			motor[motorH] = -30;
+			motor[motorI] = -30;
 			wait1Msec(3);
-			motor[motorI] = 0;
 			motor[motorH] = 0;
+			motor[motorI] = 0;
 		}
 
 		if(joy1Btn(7) == 1)
