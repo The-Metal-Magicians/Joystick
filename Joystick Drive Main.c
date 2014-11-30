@@ -42,12 +42,16 @@ task main()
 
 	while(true) // Infinite loop:
 	{
-		getJoystickSettings(joystick);
+		getJoystickSettings(joystick); // Robot control SAURABH
 
 		motor1speed = joystick.joy1_y1;
 		motor2speed = joystick.joy1_y2;
 		motor3speed = joystick.joy1_y1;
 		motor4speed = joystick.joy1_y2;
+
+		///////////////////////////////////////////////////////////////////////////
+		////////////////////////////DRIVER 1//////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////		
 
 		if(joystick.joy1_y1 || joystick.joy1_y2) //reducing the motor speed by half
 		{
@@ -65,20 +69,54 @@ task main()
 			motor[motorG] = 0;
 		}
 
-		if(joy1Btn(1) == 1) //move the scoop up when button 1 is pressed
+		if(joy1Btn(1) == 1)//80 20 goes up or down (30 CM)
+		{
+			motor[motorH] = 60;
+			motor[motorI] = 60;
+			wait1Msec(1975);
+			motor[motorH] = 0;
+			motor[motorI] = 0;
+		}
+
+		if(joy1Btn(3) == 1)//80 20 goes up or down (90 CM) 
+		{
+			motor[motorH] = 30;
+			motor[motorI] = 30;
+			wait1Msec(7125);
+			motor[motorH] = 0;
+			motor[motorI] = 0;
+		}
+
+		if(joy1Btn(4) == 1)//80 20 goes up or down (60 CM) 
+		{
+			motor[motorH] = 60;
+			motor[motorI] = 60;
+			wait1Msec(3950);
+			motor[motorH] = 0;
+			motor[motorI] = 0;
+		}
+
+		if(joy1Btn(5) == 1) //Arm goes up (not precise) 
+		{
+			servo[servo4] = -255;
+			servo[servo5] = -255;
+			wait1Msec(800);
+		}
+
+		if(joy1Btn(6) == 1) //Arm goes down (not precise) 
 		{
 			servo[servo4] = 225;
 			servo[servo5] = -225;
 			wait1Msec(800);
 		}
 
-		if(joy1Btn(2) == 1)
+		if(joy1Btn(7) == 1) //Arm assist (precise) 
 		{
 			servo[servo6] = 256;
 			wait1Msec(3);
 		}
 
-		else if(joy1Btn(3) == 1)
+		else if(joy1Btn(8) == 1) //Arm assist (precise) 
 		{
 			servo[servo6] = 0;
 			wait1Msec(3);
@@ -89,48 +127,50 @@ task main()
 			servo[servo6] = 127;
 		}
 
-		if(joy1Btn(4) == 1)
+		///////////////////////////////////////////////////////////////////////////
+		////////////////////////////DRIVER 2//////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////
+
+		if(joy2Btn(1) == 1) //IR Up
 		{
-			servo[servo4] = -255;
-			servo[servo5] = -255;
-			wait1Msec(800);
+			servo[servo3] = 256;
 		}
 
-		if(joy1Btn(5) == 1)
+		if(joy2Btn(2) == 1) //Ir Down
 		{
-			motor[motorH] = 30;
-			motor[motorI] = 30;
+			servo[servo3] = 0;
+		}
+
+		if(joy2Btn(5) == 1)//80/20 goes up or down (precise) 
+		{
+			motor[motorH] = 60;
+			motor[motorI] = 60;
 			wait1Msec(3);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
 		}
 
-		if(joy1Btn(6) == 1)
+		if(joy2Btn(6) == 1) //80/20 goes up or down (precise)
 		{
-			motor[motorH] = -30;
-			motor[motorI] = -30;
+			motor[motorH] = -60;
+			motor[motorI] = -60;
 			wait1Msec(3);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
 		}
 
-		if(joy1Btn(7) == 1)
+		if(joy2Btn(7) == 1) //Rolling goal gripper leaves
 		{
 			servo[servo1] = 0;
 			servo[servo2] = 244;
 			wait1Msec(200);
 		}
 
-		if(joy1Btn(8) == 1)
+		if(joy2Btn(8) == 1) //Rolling goal gripper grabs 
 		{
 			servo[servo1] = 244;
 			servo[servo2] = 0;
 			wait1Msec(200);
-		}
-
-		if(joy1Btn(10) == 1)
-		{
-			servo[servo6] = 127;
 		}
 	}
 }
