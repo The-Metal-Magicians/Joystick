@@ -141,7 +141,7 @@ task main()
 			servo[servo3] = 0;
 		}
 
-		if(joy2Btn(5) == 1)//80/20 goes up or down (precise) 
+		if(joy2Btn(5) == 1)//80 20 goes up or down (precise) 
 		{
 			motor[motorH] = 60;
 			motor[motorI] = 60;
@@ -150,7 +150,7 @@ task main()
 			motor[motorI] = 0;
 		}
 
-		if(joy2Btn(6) == 1) //80/20 goes up or down (precise)
+		if(joy2Btn(6) == 1) //80 20 goes up or down (precise)
 		{
 			motor[motorH] = -60;
 			motor[motorI] = -60;
