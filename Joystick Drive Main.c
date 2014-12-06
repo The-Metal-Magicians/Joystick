@@ -51,7 +51,7 @@ task main()
 
 		///////////////////////////////////////////////////////////////////////////
 		////////////////////////////DRIVER 1//////////////////////////////////////
-		/////////////////////////////////////////////////////////////////////////		
+		/////////////////////////////////////////////////////////////////////////
 
 		if(joystick.joy1_y1 || joystick.joy1_y2) //reducing the motor speed by half
 		{
@@ -78,7 +78,7 @@ task main()
 			motor[motorI] = 0;
 		}
 
-		if(joy1Btn(3) == 1)//80 20 goes up or down (90 CM) 
+		if(joy1Btn(3) == 1)//80 20 goes up or down (90 CM)
 		{
 			motor[motorH] = 30;
 			motor[motorI] = 30;
@@ -87,7 +87,7 @@ task main()
 			motor[motorI] = 0;
 		}
 
-		if(joy1Btn(4) == 1)//80 20 goes up or down (60 CM) 
+		if(joy1Btn(4) == 1)//80 20 goes up or down (60 CM)
 		{
 			motor[motorH] = 60;
 			motor[motorI] = 60;
@@ -96,27 +96,25 @@ task main()
 			motor[motorI] = 0;
 		}
 
-		if(joy1Btn(5) == 1) //Arm goes up (not precise) 
+		if(joy1Btn(5) == 1) //Arm goes up (not precise)
 		{
-			servo[servo4] = -255;
-			servo[servo5] = -255;
-			wait1Msec(800);
+			servo[servo4] = 80;
+			servo[servo5] = 166;
 		}
 
-		if(joy1Btn(6) == 1) //Arm goes down (not precise) 
+		if(joy1Btn(6) == 1) //Arm goes down (not precise)
 		{
-			servo[servo4] = 225;
-			servo[servo5] = -225;
-			wait1Msec(800);
+			servo[servo4] = 255;
+			servo[servo5] = 0;
 		}
 
-		if(joy1Btn(7) == 1) //Arm assist (precise) 
+		if(joy1Btn(7) == 1) //Arm assist (precise)
 		{
 			servo[servo6] = 256;
 			wait1Msec(3);
 		}
 
-		else if(joy1Btn(8) == 1) //Arm assist (precise) 
+		else if(joy1Btn(8) == 1) //Arm assist (precise)
 		{
 			servo[servo6] = 0;
 			wait1Msec(3);
@@ -141,7 +139,7 @@ task main()
 			servo[servo3] = 0;
 		}
 
-		if(joy2Btn(5) == 1)//80 20 goes up or down (precise) 
+		if(joy2Btn(5) == 1)//80 20 goes up or down (precise)
 		{
 			motor[motorH] = 60;
 			motor[motorI] = 60;
@@ -166,7 +164,7 @@ task main()
 			wait1Msec(200);
 		}
 
-		if(joy2Btn(8) == 1) //Rolling goal gripper grabs 
+		if(joy2Btn(8) == 1) //Rolling goal gripper grabs
 		{
 			servo[servo1] = 244;
 			servo[servo2] = 0;
