@@ -1,8 +1,6 @@
 #pragma config(Hubs,  S2, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Hubs,  S3, HTServo,  none,     none,     none)
 #pragma config(Sensor, S1,     irs,            sensorHiTechnicIRSeeker1200)
-#pragma config(Sensor, S2,     ,               sensorI2CMuxController)
-#pragma config(Sensor, S3,     ,               sensorI2CMuxController)
 #pragma config(Motor,  mtr_S2_C1_1,     motorD,        tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S2_C1_2,     motorE,        tmotorTetrix, PIDControl, reversed)
 #pragma config(Motor,  mtr_S2_C2_1,     motorF,        tmotorTetrix, PIDControl)
@@ -15,8 +13,8 @@
 #pragma config(Servo,  srvo_S2_C4_4,    servo4,               tServoStandard)
 #pragma config(Servo,  srvo_S2_C4_5,    servo5,               tServoStandard)
 #pragma config(Servo,  srvo_S2_C4_6,    servo6,               tServoContinuousRotation)
-#pragma config(Servo,  srvo_S3_C1_1,    servo7,               tServoNone)
-#pragma config(Servo,  srvo_S3_C1_2,    servo8,               tServoNone)
+#pragma config(Servo,  srvo_S3_C1_1,    servo7,               tServoContinuousRotation)
+#pragma config(Servo,  srvo_S3_C1_2,    servo8,               tServoContinuousRotation)
 #pragma config(Servo,  srvo_S3_C1_3,    servo9,               tServoNone)
 #pragma config(Servo,  srvo_S3_C1_4,    servo10,              tServoNone)
 #pragma config(Servo,  srvo_S3_C1_5,    servo11,              tServoNone)
@@ -33,6 +31,7 @@ void initializeRobot()
 	servo[servo1] = 0;
 	servo[servo2] = 256;
 	servo[servo3] = 256;
+	servo[servo7] = 127;
 
 	return;
 }
@@ -87,7 +86,7 @@ task main()
 			wait1Msec(7125);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
-		}]
+		}
 
 		if(joy1Btn(4) == 1)//80 20 goes up or down (60 CM)
 		{
@@ -109,7 +108,7 @@ task main()
 			servo[servo4] = 80;
 			servo[servo5] = 166;
 			wait1Msec(200);
-		
+
 			servo[servo4] = 256;
 			servo[servo5] = 0;
 		}
@@ -130,15 +129,17 @@ task main()
 		{
 			servo[servo6] = 127;
 		}
-		
+
 		if(joy1Btn(9) == 1)
 		{
-			servo[servo9] = 127;
+			servo[servo7] = 256;
+			wait1Msec(3);
 		}
-		
-		if(joy1Btn(10) == 1)
+
+		else if(joy1Btn(10) == 1)
 		{
-			servo[servo9] = 0;	
+			servo[servo7] = 127;
+			wait1Msec(3);
 		}
 
 		///////////////////////////////////////////////////////////////////////////
@@ -154,15 +155,20 @@ task main()
 		{
 			servo[servo3] = 0;
 		}
-		
+
 		if(joy2Btn(3) == 1) //Scoop Intake Close
 		{
-			servo[servo8] = -256;	
+			servo[servo8] = 0;
+		}
+
+		else if(joy2Btn(4) == 1) //Scoop Intake Open
+		{
+			servo[servo8] = 256;
 		}
 		
-		if(joy2Btn(4) == 1) //Scoop Intake Open
+		else
 		{
-			servo[servo8] = 256;	
+			servo[servo8] = 127;
 		}
 
 		if(joy2Btn(5) == 1)//80 20 goes up or down (precise)
