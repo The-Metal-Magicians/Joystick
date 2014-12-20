@@ -28,10 +28,10 @@ int motor4speed;
 
 void initializeRobot()
 {
-	servo[servo1] = 0;
-	servo[servo2] = 256;
-	servo[servo3] = 256;
-	servo[servo7] = 127;
+	servo[servo1] = 0; //move servo one to position of 0
+	servo[servo2] = 256; //move servo two to  position 256
+	servo[servo3] = 256; //move servo three to position 256
+	servo[servo7] = 127; //move servo four to position 127
 
 	return;
 }
@@ -43,12 +43,12 @@ task main()
 
 	while(true) // Infinite loop:
 	{
-		getJoystickSettings(joystick); // Robot control SAURABH
+		getJoystickSettings(joystick); 
 
-		motor1speed = joystick.joy1_y1;
-		motor2speed = joystick.joy1_y2;
-		motor3speed = joystick.joy1_y1;
-		motor4speed = joystick.joy1_y2;
+		motor1speed = joystick.joy1_y1;  
+		motor2speed = joystick.joy1_y2; 
+		motor3speed = joystick.joy1_y1; 
+		motor4speed = joystick.joy1_y2; 
 
 		///////////////////////////////////////////////////////////////////////////
 		////////////////////////////DRIVER 1//////////////////////////////////////
@@ -56,23 +56,23 @@ task main()
 
 		if(joystick.joy1_y1 || joystick.joy1_y2) //reducing the motor speed by half
 		{
-			motor[motorD] = motor1speed/2;
-			motor[motorE] = motor2speed/2;
-			motor[motorF] = motor3speed/2;
-			motor[motorG] = motor4speed/2;
+			motor[motorD] = motor1speed/2; halves the speed of motor 1
+			motor[motorE] = motor2speed/2; halves the speed of motor 2
+			motor[motorF] = motor3speed/2; halves the speed of motor 3
+			motor[motorG] = motor4speed/2; halves the speed of motor 4
 		}
 
 		else //brake when there is no joystick value
 		{
-			motor[motorD] = 0;
-			motor[motorE] = 0;
-			motor[motorF] = 0;
-			motor[motorG] = 0;
+			motor[motorD] = 0;  
+			motor[motorE] = 0;  
+			motor[motorF] = 0; 
+			motor[motorG] = 0; 
 		}
 
 		if(joy1Btn(1) == 1)//80 20 goes up or down (30 CM)
 		{
-			motor[motorH] = 60;
+			motor[motorH] = 60; 
 			motor[motorI] = 60;
 			wait1Msec(1975);
 			motor[motorH] = 0;
@@ -116,7 +116,7 @@ task main()
 		if(joy1Btn(7) == 1) //Arm assist (precise)
 		{
 			servo[servo6] = 256;
-			wait1Msec(3);
+			wait1Msec(3); 
 		}
 
 		else if(joy1Btn(8) == 1) //Arm assist (precise)
@@ -205,5 +205,4 @@ task main()
 	}
 }
 
-//The Metal Magicians
-//JLSNRM
+//The Metal Magician
