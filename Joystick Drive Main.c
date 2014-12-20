@@ -45,10 +45,10 @@ task main()
 	{
 		getJoystickSettings(joystick); // Robot control SAURABH
 
-		motor1speed = joystick.joy1_y1;
-		motor2speed = joystick.joy1_y2;
-		motor3speed = joystick.joy1_y1;
-		motor4speed = joystick.joy1_y2;
+		motor1speed = joystick.joy1_y1; Assigns motor 1 to Joystick 1
+		motor2speed = joystick.joy1_y2; Assigns motor 2 to Joystick 2 
+		motor3speed = joystick.joy1_y1; Assigns motor 3 to Joystick 1
+		motor4speed = joystick.joy1_y2; Assigns motor 4 to Joystick 2
 
 		///////////////////////////////////////////////////////////////////////////
 		////////////////////////////DRIVER 1//////////////////////////////////////
@@ -56,15 +56,15 @@ task main()
 
 		if(joystick.joy1_y1 || joystick.joy1_y2) //reducing the motor speed by half
 		{
-			motor[motorD] = motor1speed/2;
-			motor[motorE] = motor2speed/2;
-			motor[motorF] = motor3speed/2;
-			motor[motorG] = motor4speed/2;
+			motor[motorD] = motor1speed/2; Halves motor 1
+			motor[motorE] = motor2speed/2; Halves motor 2
+			motor[motorF] = motor3speed/2; Halves motor 3
+			motor[motorG] = motor4speed/2; Halves motor 4
 		}
 
 		else //brake when there is no joystick value
 		{
-			motor[motorD] = 0;
+			motor[motorD] = 0; 
 			motor[motorE] = 0;
 			motor[motorF] = 0;
 			motor[motorG] = 0;
@@ -74,7 +74,7 @@ task main()
 		{
 			motor[motorH] = 60;
 			motor[motorI] = 60;
-			wait1Msec(1975);
+			wait1Msec(1975); Makes the robot wait for 1975 miliseconds
 			motor[motorH] = 0;
 			motor[motorI] = 0;
 		}
@@ -83,7 +83,7 @@ task main()
 		{
 			motor[motorH] = 30;
 			motor[motorI] = 30;
-			wait1Msec(7125);
+			wait1Msec(7125); Makes the robot wait for 7125 miliseconds
 			motor[motorH] = 0;
 			motor[motorI] = 0;
 		}
@@ -92,14 +92,14 @@ task main()
 		{
 			motor[motorH] = 60;
 			motor[motorI] = 60;
-			wait1Msec(3950);
+			wait1Msec(3950); Makes the robot wait for 3950 miliseconds
 			motor[motorH] = 0;
 			motor[motorI] = 0;
 		}
 
 		if(joy1Btn(5) == 1) //Arm goes up (not precise)
 		{
-			servo[servo4] = 80;
+			servo[servo4] = 80; 
 			servo[servo5] = 166;
 		}
 
@@ -198,9 +198,9 @@ task main()
 
 		if(joy2Btn(8) == 1) //Rolling goal gripper grabs
 		{
-			servo[servo1] = 244;
-			servo[servo2] = 0;
-			wait1Msec(200);
+			servo[servo1] = 244; 
+			servo[servo2] = 0; Tells the robot to move zero degrees
+			wait1Msec(200); 
 		}
 	}
 }
