@@ -28,10 +28,10 @@ int motor4speed;
 
 void initializeRobot()
 {
-	servo[servo1] = 0; assigns servo one a value of 0
-	servo[servo2] = 256; assigns servo two a value of 256
-	servo[servo3] = 256; assigns servo three a value of 256
-	servo[servo7] = 127; assigns servo four a value of 127
+	servo[servo1] = 0; //move servo one to position of 0
+	servo[servo2] = 256; //move servo two to  position 256
+	servo[servo3] = 256; //move servo three to position 256
+	servo[servo7] = 127; //move servo four to position 127
 
 	return;
 }
@@ -43,12 +43,12 @@ task main()
 
 	while(true) // Infinite loop:
 	{
-		getJoystickSettings(joystick); // Robot control AAYUSH
+		getJoystickSettings(joystick); 
 
-		motor1speed = joystick.joy1_y1; assigns motor one to joystick one
-		motor2speed = joystick.joy1_y2; assigns motor two to joystick two
-		motor3speed = joystick.joy1_y1; assigns motor three to joystick one
-		motor4speed = joystick.joy1_y2; assigns motor four to joystick two
+		motor1speed = joystick.joy1_y1;  
+		motor2speed = joystick.joy1_y2; 
+		motor3speed = joystick.joy1_y1; 
+		motor4speed = joystick.joy1_y2; 
 
 		///////////////////////////////////////////////////////////////////////////
 		////////////////////////////DRIVER 1//////////////////////////////////////
@@ -116,7 +116,7 @@ task main()
 		if(joy1Btn(7) == 1) //Arm assist (precise)
 		{
 			servo[servo6] = 256;
-			wait1Msec(3); makes the robot stop for 3 miliseconds
+			wait1Msec(3); 
 		}
 
 		else if(joy1Btn(8) == 1) //Arm assist (precise)
@@ -205,6 +205,4 @@ task main()
 	}
 }
 
-//The Metal Magicians
-//JLSNRM
-Aayush, Rayyaan, and Rithvik made this entire program
+//The Metal Magician
