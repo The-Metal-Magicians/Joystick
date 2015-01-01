@@ -10,11 +10,11 @@
 #pragma config(Servo,  srvo_S2_C4_1,    servo1,               tServoStandard)
 #pragma config(Servo,  srvo_S2_C4_2,    servo2,               tServoStandard)
 #pragma config(Servo,  srvo_S2_C4_3,    servo3,               tServoStandard)
-#pragma config(Servo,  srvo_S2_C4_4,    servo4,               tServoStandard)
-#pragma config(Servo,  srvo_S2_C4_5,    servo5,               tServoStandard)
+#pragma config(Servo,  srvo_S2_C4_4,    servo4,               tServoContinuousRotation)
+#pragma config(Servo,  srvo_S2_C4_5,    servo5,               tServoContinuousRotation)
 #pragma config(Servo,  srvo_S2_C4_6,    servo6,               tServoContinuousRotation)
-#pragma config(Servo,  srvo_S3_C1_1,    servo7,               tServoContinuousRotation)
-#pragma config(Servo,  srvo_S3_C1_2,    servo8,               tServoContinuousRotation)
+#pragma config(Servo,  srvo_S3_C1_1,    servo7,               tServoNone)
+#pragma config(Servo,  srvo_S3_C1_2,    servo8,               tServoNone)
 #pragma config(Servo,  srvo_S3_C1_3,    servo9,               tServoNone)
 #pragma config(Servo,  srvo_S3_C1_4,    servo10,              tServoNone)
 #pragma config(Servo,  srvo_S3_C1_5,    servo11,              tServoNone)
@@ -31,7 +31,6 @@ void initializeRobot()
 	servo[servo1] = 0;
 	servo[servo2] = 256;
 	servo[servo3] = 256;
-	servo[servo7] = 127;
 
 	return;
 }
@@ -79,7 +78,7 @@ task main()
 			motor[motorI] = 0;
 		}
 
-		if(joy1Btn(3) == 1)//80 20 goes up or down (90 CM)
+		if(joy1Btn(3) == 1) //80/20 goes up or down (90 CM)
 		{
 			motor[motorH] = 30;
 			motor[motorI] = 30;
@@ -88,7 +87,7 @@ task main()
 			motor[motorI] = 0;
 		}
 
-		if(joy1Btn(4) == 1)//80 20 goes up or down (60 CM)
+		if(joy1Btn(4) == 1) //80/20 goes up or down (60 CM)
 		{
 			motor[motorH] = 60;
 			motor[motorI] = 60;
@@ -97,32 +96,28 @@ task main()
 			motor[motorI] = 0;
 		}
 
-		if(joy1Btn(5) == 1) //Arm goes up (not precise)
+		if(joy1Btn(5) == 1) //Arm goes medium (not precise)
 		{
-			servo[servo4] = 80;
-			servo[servo5] = 166;
+			servo[servo4] = 167;
+			servo[servo7] = 87;
+			wait1Msec(800);
 		}
 
 		if(joy1Btn(6) == 1) //Arm goes down (not precise)
 		{
-			servo[servo4] = 80;
-			servo[servo5] = 166;
-			wait1Msec(200);
-
-			servo[servo4] = 256;
-			servo[servo5] = 0;
+			servo[servo4] = 0;
+			servo[servo7] = 256;
+			wait1Msec(800);
 		}
 
-		if(joy1Btn(7) == 1) //Arm assist (precise)
+		if(joy1Btn(7) == 1) //Hatch
 		{
 			servo[servo6] = 256;
-			wait1Msec(3);
 		}
 
-		else if(joy1Btn(8) == 1) //Arm assist (precise)
+		else if(joy1Btn(8) == 1) //Hatch
 		{
 			servo[servo6] = 0;
-			wait1Msec(3);
 		}
 
 		else
@@ -130,25 +125,35 @@ task main()
 			servo[servo6] = 127;
 		}
 
-		if(joy1Btn(9) == 1)
+		if(joy1Btn(9) == 1) //Left lead open
 		{
-			servo[servo7] = 256;
-			wait1Msec(3);
+			servo[servo8] = 0;
 		}
 
-		else if(joy1Btn(10) == 1)
+		if(joy1Btn(10) == 1) //Left lead close
 		{
-			servo[servo7] = 127;
-			wait1Msec(3);
+			servo[servo8] = 256;
+		}
+
+		if(joy1Btn(11) == 1) //Right lead open
+		{
+			servo[servo5] = 100;
+		}
+
+		if(joy1Btn(12) == 1) //Right lead close
+		{
+			servo[servo5] = 0;
 		}
 
 		///////////////////////////////////////////////////////////////////////////
 		////////////////////////////DRIVER 2//////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////
 
-		if(joy2Btn(1) == 1) //IR Up
+		if(joy2Btn(1) == 1) //Arm goes medium (not precise)
 		{
-			servo[servo3] = 256;
+			servo[servo4] = 207;
+			servo[servo7] = 47;
+			wait1Msec(800);
 		}
 
 		if(joy2Btn(2) == 1) //Ir Down
@@ -156,34 +161,19 @@ task main()
 			servo[servo3] = 0;
 		}
 
-		if(joy2Btn(3) == 1) //Scoop Intake Close
+		if(joy2Btn(5) == 1)//80/20 goes up or down (precise)
 		{
-			servo[servo8] = 0;
-		}
-
-		else if(joy2Btn(4) == 1) //Scoop Intake Open
-		{
-			servo[servo8] = 256;
-		}
-		
-		else
-		{
-			servo[servo8] = 127;
-		}
-
-		if(joy2Btn(5) == 1)//80 20 goes up or down (precise)
-		{
-			motor[motorH] = 60;
-			motor[motorI] = 60;
+			motor[motorH] = 80;
+			motor[motorI] = 80;
 			wait1Msec(3);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
 		}
 
-		if(joy2Btn(6) == 1) //80 20 goes up or down (precise)
+		if(joy2Btn(6) == 1) //80/20 goes up or down (precise)
 		{
-			motor[motorH] = -60;
-			motor[motorI] = -60;
+			motor[motorH] = -80;
+			motor[motorI] = -80;
 			wait1Msec(3);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
@@ -202,7 +192,28 @@ task main()
 			servo[servo2] = 0;
 			wait1Msec(200);
 		}
+
+		if(joy2Btn(9) == 1) //Left lead open
+		{
+			servo[servo8] = 0;
+		}
+
+		if(joy2Btn(10) == 1) //Left lead close
+		{
+			servo[servo8] = 256;
+		}
+
+		if(joy2Btn(11) == 1) //Right lead open
+		{
+			servo[servo5] = 100;
+		}
+
+		if(joy2Btn(12) == 1) //Right lead close
+		{
+			servo[servo5] = 0;
+		}
 	}
 }
 
 //The Metal Magicians
+//Jeffles and Sabob
