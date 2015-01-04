@@ -161,20 +161,20 @@ task main()
 			servo[servo3] = 0;
 		}
 
-		if(joy2Btn(5) == 1)//80/20 goes up or down (precise)
+		if(joy2Btn(5) == 1)//80/20 goes up (precise)
 		{
 			motor[motorH] = 80;
 			motor[motorI] = 80;
-			wait1Msec(3);
+			wait1Msec(10);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
 		}
 
-		if(joy2Btn(6) == 1) //80/20 goes up or down (precise)
+		if(joy2Btn(6) == 1) //80/20 goes down (precise)
 		{
 			motor[motorH] = -80;
 			motor[motorI] = -80;
-			wait1Msec(3);
+			wait1Msec(10);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
 		}
@@ -216,4 +216,3 @@ task main()
 }
 
 //The Metal Magicians
-//Jeffles and Sabob
