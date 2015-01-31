@@ -73,6 +73,11 @@ task main()
 		{
 			motor[motorH] = 60;
 			motor[motorI] = 60;
+			if(joy2Btn(3) == 1)
+			{
+				motor[motorH] = 0;
+				motor[motorI] = 0;
+			}
 			wait1Msec(1975);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
@@ -82,6 +87,11 @@ task main()
 		{
 			motor[motorH] = 30;
 			motor[motorI] = 30;
+			if(joy2Btn(3) == 1)
+			{
+				motor[motorH] = 0;
+				motor[motorI] = 0;
+			}
 			wait1Msec(7125);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
@@ -91,6 +101,11 @@ task main()
 		{
 			motor[motorH] = 60;
 			motor[motorI] = 60;
+			if(joy2Btn(3) == 1)
+			{
+				motor[motorH] = 0;
+				motor[motorI] = 0;
+			}
 			wait1Msec(3950);
 			motor[motorH] = 0;
 			motor[motorI] = 0;
@@ -159,6 +174,12 @@ task main()
 		if(joy2Btn(2) == 1) //Ir Down
 		{
 			servo[servo3] = 0;
+		}
+
+		if(joy2Btn(3) == 1)
+		{
+			motor[motorH] = 0;
+			motor[motorI] = 0;
 		}
 
 		if(joy2Btn(5) == 1)//80/20 goes up (precise)
